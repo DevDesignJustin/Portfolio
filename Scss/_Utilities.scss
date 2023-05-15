@@ -1,0 +1,145 @@
+// Variables
+$main-color-blue: #3da2ff;
+$main-color-blue-light: #bee0ff;
+$main-color-gradient: linear-gradient(92.14deg, #eb4bc8 4.28%, #5396fc 101.96%);
+$website-width: 1140px;
+
+// Normalize
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  cursor: none !important;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+section {
+  height: 100%;
+}
+
+// Utilities
+.container {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden;
+}
+
+.bg-main {
+  background-color: $main-color-blue;
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.color-main {
+  color: $main-color-blue;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-gradient {
+  color: $main-color-gradient;
+}
+
+.h1 {
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.h3 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.h6 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.p {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.semi20 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  margin-top: 14px;
+  border: none;
+  border-radius: 16px;
+}
+
+.btn-full {
+  display: inline-block;
+  width: 100%;
+  padding: 0.8rem 0;
+  text-align: center;
+  margin-top: 14px;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-half {
+  display: inline-block;
+  width: 45%;
+  padding: 0.8rem 0;
+  text-align: center;
+  margin-top: 14px;
+  border: none;
+  border-radius: 10px;
+}
+
+.bottom-line {
+  height: 2px;
+  width: 3rem;
+  background: $main-color-blue;
+  display: block;
+  margin: 2rem auto 3rem auto;
+}
