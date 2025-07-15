@@ -34,8 +34,11 @@ const Nav = () => {
     { scope: container }
   );
   return (
-    <nav className="flex w-full mt-14" ref={container}>
-      <div className="logo flex  items-center">
+    <nav
+      className="flex flex-col items-center w-full my-8 sm:flex-row sm:items-baseline sm:my-14"
+      ref={container}
+    >
+      <div className="logo flex items-center mb-2 sm:mb-0">
         <img className="size-4 logo-img" src="/images/logo.svg" alt="" />{" "}
         <h6 className="logo-text text-2xl ml-0.5">ustin</h6>
       </div>
