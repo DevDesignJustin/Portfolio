@@ -1,2 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
 
+@theme {
+  --color-primary: #ff7b00;
+  --color-white: #fff;
+  --color-dark: #000;
+  --font-primary:   font-family: "Afacad", sans-serif;;
+}
+
+body {
+  background-color: var(--color-dark);
+  font-family: var(--font-koulen);
+  color: var(--color-white);
+}
+
+.container {
+  max-width: 1184px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 42px;
+}
+
+span {
+  color: var(--color-primary)
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+  .abs-center-y {
+    @apply absolute top-1/2 -translate-y-1/2;
+  }
+}
