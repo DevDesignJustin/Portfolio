@@ -5,13 +5,13 @@
   --color-primary: #ff7b00;
   --color-white: #fff;
   --color-dark: #000;
-  --font-primary:   font-family: "Afacad", sans-serif;;
+  --font-primary: "Afacad", sans-serif;
 }
 
 body {
-  background-color: var(--color-dark);
-  font-family: var(--font-koulen);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  font-family: var(--font-primary);
+  color: var(--color-dark);
 }
 
 .container {
@@ -21,9 +21,6 @@ body {
   padding: 0 42px;
 }
 
-span {
-  color: var(--color-primary)
-}
 
 @layer utilities {
   .flex-center {
@@ -37,5 +34,20 @@ span {
   }
   .abs-center-y {
     @apply absolute top-1/2 -translate-y-1/2;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply h-[41px] flex justify-center items-center rounded-full
+  }
+
+  .nav-link {
+    @apply text-[21px] text-white px-[27px]
+
+  }
+
+  .active {
+    @apply bg-white
   }
 }
