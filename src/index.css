@@ -2,11 +2,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #ff7b00;
+  --color-primary: #FF6F00;
   --color-white: #fff;
   --color-dark: #000;
   --font-primary: "Afacad", sans-serif;
 }
+
 
 body {
   background-color: var(--color-white);
@@ -49,5 +50,9 @@ body {
 
   .active {
     @apply bg-white
+  }
+
+  .button {
+    @apply rounded-full w-full h-[50px] font-bold 
   }
 }
