@@ -7,28 +7,36 @@ gsap.registerPlugin(SplitText);
 const Nav = () => {
   const container = useRef(0);
 
-  useGSAP(() => {
-    let splitLogo = SplitText.create(".logo-text", { type: "chars" });
-    gsap.from(splitLogo.chars, {
-      x: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.05,
-      ease: "power1.inOut",
-    });
-    window.addEventListener("DOMContentLoaded", {});
-    gsap.from(".nav-list", {
-      opacity: 0,
-      //   width: 60,
-      y: -200,
-      duration: 0.8,
-      ease: "power1.inOut",
-    });
-  }, { scope: container });
+  useGSAP(
+    () => {
+      const tl = gsap.timeline();
+      let splitLogo = SplitText.create(".logo-text", { type: "chars" });
+      tl.from(".logo-img", {
+        opacity: 0,
+        x: 50,
+        duration: 1,
+        ease: "power1.inOut",
+      }).from(splitLogo.chars, {
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "power1.inOut",
+      }, '-=0.8');
+      gsap.from(".nav-list", {
+        opacity: 0,
+        //   width: 60,
+        y: -200,
+        duration: 0.8,
+        ease: "power1.inOut",
+      });
+    },
+    { scope: container }
+  );
   return (
     <nav className="flex w-full mt-14" ref={container}>
       <div className="logo flex  items-center">
-        <img className="size-4" src="/images/logo.svg" alt="" />{" "}
+        <img className="size-4 logo-img" src="/images/logo.svg" alt="" />{" "}
         <h6 className="logo-text text-2xl ml-0.5">ustin</h6>
       </div>
       <div className="nav-container w-[calc(100%-63px)] justify-center flex">
@@ -48,7 +56,7 @@ const Nav = () => {
               Projects
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item mr-[4.5px]">
             <a className="nav-link" href="">
               Contact
             </a>

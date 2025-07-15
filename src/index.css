@@ -39,11 +39,11 @@ body {
 
 @layer components {
   .nav-item {
-    @apply h-[41px] flex justify-center items-center rounded-full
+    @apply h-[41px] flex justify-center items-center rounded-full transition-all duration-500 ease-in-out hover:bg-white hover:text-dark
   }
 
   .nav-link {
-    @apply text-[21px] text-white px-[27px]
+    @apply text-[21px] text-white px-[27px] transition-all duration-500 hover:text-dark ease-in-out
 
   }
 
