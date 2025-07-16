@@ -19,15 +19,45 @@ const Hero = () => {
                   I am a high school student who caught on to programming and
                   designing web applications from an early age.
                 </p>
-                <button className="button bg-primary  text-white mt-10 mb-2.5">
+                <button className="button bg-primary border-[3px] border-primary text-white mt-10 mb-2.5 hover:bg-white hover:text-primary">
                   <a href="">My Projects</a>
                 </button>
-                <button className="button border-[3px] border-black  text-black">
+                <button className="button border-[3px] border-black text-black hover:bg-black hover:text-white">
                   <a href="https://github.com/DevDesignJustin">My Github</a>
                 </button>
               </div>
             </div>
-            <div className="right-panel w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px] transition-all duration-800 ease-in-out hover:rounded-tr-[25px]"></div>
+            <div className="right-panel overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px] transition-all duration-800 ease-in-out hover:rounded-tr-[25px]">
+              <div className="size-full flex p-5">
+                <div className="text flex flex-col w-64 h-full">
+                  <h6 className="text-[20px]">Amazon Redesign:</h6>
+                  <h3 className="text-[40px]/12 font-bold">Habitual</h3>
+                  <p className="text-[14px] font-bold text-blue-700 ">
+                    UI & UX
+                  </p>
+                  <h4 className="font-bold mt-auto">Featured Design</h4>
+                </div>
+                <div className="panel-content ml-10 w-full">
+                  <div className="mockups flex relative bottom-[-100px]">
+                    <img
+                      className=""
+                      src="/images/mockups/habitual-1.png"
+                      alt=""
+                    />
+                    <img
+                      className="absolute bottom-[-60px] left-[150px]"
+                      src="/images/mockups/habitual-2.png"
+                      alt=""
+                    />
+                    <div className="bg-pink-300 blur-3xl w-[300px] h-[250px] rounded-full absolute left-[-50px] -z-10"></div>
+                    <div className="bg-pink-300 blur-3xl w-[200px] h-[150px] rounded-full absolute left-[150px] bottom-[30px] -z-10"></div>
+                  </div>
+                </div>
+                <button className="button border-[3px] border-primary text-primary w-[240px] mt-auto hover:bg-primary hover:text-white">
+                  <a href="">Check it out</a>
+                </button>
+              </div>
+            </div>
           </div>
           <div className="hero-bottom flex justify-between">
             <h1 className="text-9xl font-bold mt-6">
