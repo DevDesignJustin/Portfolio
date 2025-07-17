@@ -42,7 +42,7 @@ const Nav = () => {
         <img className="size-4 logo-img" src="/images/logo.svg" alt="" />{" "}
         <h6 className="logo-text text-2xl ml-0.5">ustin</h6>
       </div>
-      <div className="nav-container w-[calc(100%-63px)] justify-center flex">
+      <div className="nav-container w-[calc(100%-58px)] justify-center flex sm:w-[calc(100%-63px)]">
         <ul className="nav-list flex h-[50px] w-[460px] justify-between items-center rounded-full bg-black">
           <li className="nav-item w-[41px] active ml-[4.5px]">
             <a href="">

@@ -1,12 +1,72 @@
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
+import { useRef } from "react";
+gsap.registerPlugin(SplitText);
 import Nav from "./Nav";
 const Hero = () => {
+  const containerHero = useRef(null);
+  const leftPanel = useRef(null);
+  useGSAP(
+    () => {
+      const tlLP = gsap.timeline({ paused: true });
+      
+      const originalClasses = leftPanel.current.className;
+      leftPanel.current.className = originalClasses.replace('rounded-bl-[250px] rounded-[25px]', '');
+      
+      leftPanel.current.style.borderRadius = '25px';
+      leftPanel.current.style.borderBottomLeftRadius = '250px';
+      
+      tlLP.to(leftPanel.current, {
+        borderBottomLeftRadius: '25px',
+        duration: 0.5,
+        ease: 'power2.inOut'
+      });
+
+      leftPanel.current.addEventListener("mouseenter", () => {
+        tlLP.play();
+      });
+      leftPanel.current.addEventListener("mouseleave", () => {
+        tlLP.reverse();
+      });
+      const tlH = gsap.timeline();
+      let splitTitle = SplitText.create(".title", { type: "chars, words" });
+
+
+
+      tlH
+        .from(splitTitle.words, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          stagger: 0.05,
+          ease: "power1.inOut",
+        })
+        .from(".left-panel", {
+          opacity: 0,
+          duration: 1.1,
+          ease: "power1.inOut",
+        }, 0 )
+        .from(".right-panel", {
+          opacity: 0,
+          duration: 1.1,
+          ease: "power1.inOut",
+        }, '-=1' );
+      },
+    { scope: containerHero }
+  );
+
   return (
     <header>
+      x
       <div className="container bg-amber- h-dvh">
         <Nav />
-        <div className="hero-section">
+        <div ref={containerHero} className="hero-section">
           <div className="hero-panels flex flex-wrap justify-between">
-            <div className="left-panel overflow-hidden w-3xs h-[370px] border-[3px] border-black rounded-bl-[250px] rounded-[25px] transition-all duration-800 ease-in-out hover:rounded-bl-[25px]">
+            <div
+              ref={leftPanel}
+              className="left-panel overflow-hidden w-3xs h-[370px] border-[3px] border-black"
+            >
               <div className="flex ml-2 mt-7">
                 <img src="/images/me.png" alt="" />
                 <div>
@@ -27,7 +87,7 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-            <div className="right-panel overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px] transition-all duration-800 ease-in-out hover:rounded-tr-[25px]">
+            <div className="right-panel overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px]">
               <div className="size-full flex p-5">
                 <div className="text flex flex-col w-64 h-full">
                   <h6 className="text-[20px]">Amazon Redesign:</h6>
@@ -60,7 +120,7 @@ const Hero = () => {
             </div>
           </div>
           <div className="hero-bottom flex justify-between">
-            <h1 className="text-9xl font-bold mt-6">
+            <h1 className="title text-9xl font-bold mt-6">
               web developer & <br /> designer
             </h1>
             <div className="hero-scroll items-end flex">
