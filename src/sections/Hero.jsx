@@ -50,7 +50,7 @@ const Hero = () => {
         <div ref={containerHero} className="hero-section">
           <div className="hero-panels flex flex-wrap justify-between">
             <div ref={leftPanel} className="left-panel">
-              <div className="size-full   overflow-hidden w-3xs h-[370px] border-[3px] border-black rounded-[25px] rounded-bl-[250px] transition-all duration-500 ease-in-out hover:rounded-bl-[25px]">
+              <div className="size-full overflow-hidden w-3xs h-[370px] border-[3px] border-black rounded-[25px] rounded-bl-[250px] transition-all duration-500 ease-in-out hover:rounded-bl-[25px]">
                 <div className="flex ml-2 mt-7">
                   <img src="/images/me.png" alt="" />
                   <div>
@@ -72,35 +72,37 @@ const Hero = () => {
                 </div>
               </div>
             </div>
-            <div className="right-panel overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px]">
-              <div className="size-full flex p-5">
-                <div className="text flex flex-col w-64 h-full">
-                  <h6 className="text-[20px]">Amazon Redesign:</h6>
-                  <h3 className="text-[40px]/12 font-bold">Habitual</h3>
-                  <p className="text-[14px] font-bold text-blue-700 ">
-                    UI & UX
-                  </p>
-                  <h4 className="font-bold mt-auto">Featured Design</h4>
-                </div>
-                <div className="panel-content ml-10 w-full">
-                  <div className="mockups flex relative bottom-[-100px]">
-                    <img
-                      className=""
-                      src="/images/mockups/habitual-1.png"
-                      alt=""
-                    />
-                    <img
-                      className="absolute bottom-[-60px] left-[150px]"
-                      src="/images/mockups/habitual-2.png"
-                      alt=""
-                    />
-                    <div className="bg-pink-300 blur-3xl w-[300px] h-[250px] rounded-full absolute left-[-50px] -z-10"></div>
-                    <div className="bg-pink-300 blur-3xl w-[200px] h-[150px] rounded-full absolute left-[150px] bottom-[30px] -z-10"></div>
+            <div className="right-panel">
+              <div className="size-full overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px] transition-all duration-500 ease-in-out hover:rounded-tr-[25px] ">
+                <div className="size-full flex p-5">
+                  <div className="text flex flex-col w-64 h-full">
+                    <h6 className="text-[20px]">Amazon Redesign:</h6>
+                    <h3 className="text-[40px]/12 font-bold">Habitual</h3>
+                    <p className="text-[14px] font-bold text-blue-700 ">
+                      UI & UX
+                    </p>
+                    <h4 className="font-bold mt-auto">Featured Design</h4>
                   </div>
+                  <div className="panel-content ml-10 w-full">
+                    <div className="mockups flex relative bottom-[-100px]">
+                      <img
+                        className=""
+                        src="/images/mockups/habitual-1.png"
+                        alt=""
+                      />
+                      <img
+                        className="absolute bottom-[-60px] left-[150px]"
+                        src="/images/mockups/habitual-2.png"
+                        alt=""
+                      />
+                      <div className="bg-pink-300 blur-3xl w-[300px] h-[250px] rounded-full absolute left-[-50px] -z-10"></div>
+                      <div className="bg-pink-300 blur-3xl w-[200px] h-[150px] rounded-full absolute left-[150px] bottom-[30px] -z-10"></div>
+                    </div>
+                  </div>
+                  <button className="button border-[3px] border-primary text-primary w-[240px] mt-auto hover:bg-primary hover:text-white">
+                    <a href="">Check it out</a>
+                  </button>
                 </div>
-                <button className="button border-[3px] border-primary text-primary w-[240px] mt-auto hover:bg-primary hover:text-white">
-                  <a href="">Check it out</a>
-                </button>
               </div>
             </div>
           </div>
