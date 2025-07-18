@@ -9,30 +9,8 @@ const Hero = () => {
   const leftPanel = useRef(null);
   useGSAP(
     () => {
-      const tlLP = gsap.timeline({ paused: true });
-      
-      const originalClasses = leftPanel.current.className;
-      leftPanel.current.className = originalClasses.replace('rounded-bl-[250px] rounded-[25px]', '');
-      
-      leftPanel.current.style.borderRadius = '25px';
-      leftPanel.current.style.borderBottomLeftRadius = '250px';
-      
-      tlLP.to(leftPanel.current, {
-        borderBottomLeftRadius: '25px',
-        duration: 0.5,
-        ease: 'power2.inOut'
-      });
-
-      leftPanel.current.addEventListener("mouseenter", () => {
-        tlLP.play();
-      });
-      leftPanel.current.addEventListener("mouseleave", () => {
-        tlLP.reverse();
-      });
       const tlH = gsap.timeline();
       let splitTitle = SplitText.create(".title", { type: "chars, words" });
-
-
 
       tlH
         .from(splitTitle.words, {
@@ -42,17 +20,25 @@ const Hero = () => {
           stagger: 0.05,
           ease: "power1.inOut",
         })
-        .from(".left-panel", {
-          opacity: 0,
-          duration: 1.1,
-          ease: "power1.inOut",
-        }, 0 )
-        .from(".right-panel", {
-          opacity: 0,
-          duration: 1.1,
-          ease: "power1.inOut",
-        }, '-=1' );
-      },
+        .from(
+          ".left-panel",
+          {
+            opacity: 0,
+            duration: 1.1,
+            ease: "power1.inOut",
+          },
+          0
+        )
+        .from(
+          ".right-panel",
+          {
+            opacity: 0,
+            duration: 1.1,
+            ease: "power1.inOut",
+          },
+          "-=1"
+        );
+    },
     { scope: containerHero }
   );
 
@@ -63,28 +49,27 @@ const Hero = () => {
         <Nav />
         <div ref={containerHero} className="hero-section">
           <div className="hero-panels flex flex-wrap justify-between">
-            <div
-              ref={leftPanel}
-              className="left-panel overflow-hidden w-3xs h-[370px] border-[3px] border-black"
-            >
-              <div className="flex ml-2 mt-7">
-                <img src="/images/me.png" alt="" />
-                <div>
-                  <p>Hi, I'm</p>
-                  <h3 className="text-4xl font-bold">Justin</h3>
+            <div ref={leftPanel} className="left-panel">
+              <div className="size-full   overflow-hidden w-3xs h-[370px] border-[3px] border-black rounded-[25px] rounded-bl-[250px] transition-all duration-500 ease-in-out hover:rounded-bl-[25px]">
+                <div className="flex ml-2 mt-7">
+                  <img src="/images/me.png" alt="" />
+                  <div>
+                    <p>Hi, I'm</p>
+                    <h3 className="text-4xl font-bold">Justin</h3>
+                  </div>
                 </div>
-              </div>
-              <div className="px-5 flex flex-col">
-                <p className="px-2 text-[14px]">
-                  I am a high school student who caught on to programming and
-                  designing web applications from an early age.
-                </p>
-                <button className="button bg-primary border-[3px] border-primary text-white mt-10 mb-2.5 hover:bg-white hover:text-primary">
-                  <a href="">My Projects</a>
-                </button>
-                <button className="button border-[3px] border-black text-black hover:bg-black hover:text-white">
-                  <a href="https://github.com/DevDesignJustin">My Github</a>
-                </button>
+                <div className="px-5 flex flex-col">
+                  <p className="px-2 text-[14px]">
+                    I am a high school student who caught on to programming and
+                    designing web applications from an early age.
+                  </p>
+                  <button className="button bg-primary border-[3px] border-primary text-white mt-10 mb-2.5 hover:bg-white hover:text-primary">
+                    <a href="">My Projects</a>
+                  </button>
+                  <button className="button border-[3px] border-black text-black hover:bg-black hover:text-white">
+                    <a href="https://github.com/DevDesignJustin">My Github</a>
+                  </button>
+                </div>
               </div>
             </div>
             <div className="right-panel overflow-hidden w-[880px] h-[370px] border-[3px] border-black rounded-tr-[250px] rounded-[25px]">
