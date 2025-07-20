@@ -25,7 +25,6 @@ const Nav = () => {
       }, '-=0.8');
       gsap.from(".nav-list", {
         opacity: 0,
-        //   width: 60,
         y: -200,
         duration: 0.8,
         ease: "power1.inOut",

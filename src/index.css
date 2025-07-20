@@ -55,4 +55,8 @@ body {
   .button {
     @apply flex rounded-full w-full h-[50px] font-bold items-center justify-center transition-all duration-500 ease-in-out
   }
+
+  .subtitle {
+    @apply text-[40px] font-bold
+  }
 }

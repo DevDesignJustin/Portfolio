@@ -14,6 +14,7 @@ const Hero = () => {
       });
       let splitTitle = SplitText.create(".title", { type: "chars, words" });
 
+      gsap.set(".line", { width: 0 });
       tlH
         .from(splitTitle.words, {
           opacity: 0,
@@ -52,14 +53,18 @@ const Hero = () => {
           ease: "power2",
           yoyo: true,
           repeat: -1,
-        });
+        })
+        .to(".line", {
+          width: "100%",
+          duration: 1.1,
+        }, 0);
     },
     { scope: containerHero }
   );
 
   return (
     <header>
-      <div className="container bg-amber- h-dvh">
+      <div className="container ">
         <Nav />
         <div ref={containerHero} className="hero-section">
           <div className="hero-panels flex flex-wrap justify-between">
@@ -133,6 +138,7 @@ const Hero = () => {
               />
             </div>
           </div>
+        <div className="line h-[1.5px] bg-black mt-10"></div>
         </div>
       </div>
     </header>
