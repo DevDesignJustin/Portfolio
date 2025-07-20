@@ -1,17 +1,28 @@
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
+import { ScrollTrigger } from "gsap/all";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 
 function App() {
+  useGSAP(() => {
+   let smoother = ScrollSmoother.create({
+      smooth: 2,
+      effects: true,
+    });
+
+    
+  });
   return (
-    <>
-      <Hero />
-      <Projects />
-    </>
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
+        <Hero />
+        <Projects />
+      </div>
+    </div>
   );
 }
 
