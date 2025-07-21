@@ -6,6 +6,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
+import TechStack from "./sections/TechStack";
 
 function App() {
   useGSAP(() => {
@@ -21,6 +22,7 @@ function App() {
       <div id="smooth-content">
         <Hero />
         <Projects />
+        <TechStack />
       </div>
     </div>
   );

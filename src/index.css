@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Allison&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FF6F00;
+  --color-primary: #ff6f00;
   --color-white: #fff;
   --color-dark: #000;
   --font-primary: "Afacad", sans-serif;
+  --font-secondary: "Allison", sans-serif;
 }
-
 
 body {
   background-color: var(--color-white);
@@ -20,6 +20,11 @@ body {
   margin: auto;
   overflow: hidden;
   padding: 0 42px;
+}
+
+.tech-item {
+  font-family: var(--font-secondary);
+  text-transform: lowercase;
 }
 
 
@@ -40,23 +45,22 @@ body {
 
 @layer components {
   .nav-item {
-    @apply h-[41px] flex justify-center items-center rounded-full transition-all duration-500 ease-in-out hover:bg-white hover:text-dark
+    @apply h-[41px] flex justify-center items-center rounded-full transition-all duration-500 ease-in-out hover:bg-white hover:text-dark;
   }
 
   .nav-link {
-    @apply text-[21px] text-white px-[27px] transition-all duration-300 hover:text-dark ease-in-out
-
+    @apply text-[21px] text-white px-[27px] transition-all duration-300 hover:text-dark ease-in-out;
   }
 
   .active {
-    @apply bg-white
+    @apply bg-white;
   }
 
   .button {
-    @apply flex rounded-full w-full h-[50px] font-bold items-center justify-center transition-all duration-500 ease-in-out
+    @apply flex rounded-full w-full h-[50px] font-bold items-center justify-center transition-all duration-500 ease-in-out;
   }
 
   .subtitle {
-    @apply text-[40px] font-bold
+    @apply text-[40px] font-bold;
   }
 }
