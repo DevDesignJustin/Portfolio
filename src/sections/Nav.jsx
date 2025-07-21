@@ -16,13 +16,17 @@ const Nav = () => {
         x: 50,
         duration: 1,
         ease: "power1.inOut",
-      }).from(splitLogo.chars, {
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.05,
-        ease: "power1.inOut",
-      }, '-=0.8');
+      }).from(
+        splitLogo.chars,
+        {
+          x: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.05,
+          ease: "power1.inOut",
+        },
+        "-=0.8"
+      );
       gsap.from(".nav-list", {
         opacity: 0,
         y: -200,
@@ -41,7 +45,7 @@ const Nav = () => {
         <img className="size-4 logo-img" src="/images/logo.svg" alt="" />{" "}
         <h6 className="logo-text text-2xl ml-0.5">ustin</h6>
       </div>
-      <div className="nav-container w-[calc(100%-58px)] justify-center flex sm:w-[calc(100%-63px)]">
+      <div className="nav-container sticky top-0 z-50 w-[calc(100%-58px)] justify-center flex sm:w-[calc(100%-63px)]">
         <ul className="nav-list flex h-[50px] w-[460px] justify-between items-center rounded-full bg-black">
           <li className="nav-item w-[41px] active ml-[4.5px]">
             <a href="">
@@ -50,9 +54,7 @@ const Nav = () => {
           </li>
           <li className="about-btn nav-item">
             {/* <a className="nav-link" href=""> */}
-            <div className="nav-link">
-              About
-            </div>
+            <div className="nav-link">About</div>
             {/* </a> */}
           </li>
           <li className="nav-item">

@@ -62,7 +62,7 @@ const TechStack = () => {
   }, []);
 
   return (
-    <section className="tech-stack w-full h-[150px] bg-black mt-[125px] text-white overflow-hidden relative">
+    <section className="tech-stack w-full h-[150px] bg-black text-white overflow-hidden relative">
       <div 
         ref={techStackRef} 
         className="absolute top-[-12px] left-0 h-full flex items-center whitespace-nowrap will-change-transform"

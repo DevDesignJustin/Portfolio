@@ -9,7 +9,7 @@ const Projects = () => {
  
   });
   return (
-    <section className="projects mt-[120px] ">
+    <section className="projects py-[120px] bg-white ">
       <div className="container  " id="smooth-wrapper">
         <div
           className="projects-grid grid md:grid-cols-2 grid-cols-1 justify-between"
@@ -42,7 +42,7 @@ const Projects = () => {
             </div>
           </div>
         </div>
-        <div className="line h-[1.5px] bg-black mt-10"></div>
+        {/* <div className="line h-[1.5px] bg-black mt-10"></div> */}
       </div>
     </section>
   );

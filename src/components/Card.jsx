@@ -6,15 +6,15 @@ const Card = ({ message, title, image, link}) => {
   const cardHover= () => {
     hoverBtn.current.style.display ='flex'
     circleIsOn = true
-    
   }
 
-  document.addEventListener('mousemove', (e) => {
-    if(circleIsOn){
-      hoverBtn.current.style.top = `${e.clientY - hoverBtn.current.offsetHeight / 2}px`;
-      hoverBtn.current.style.left = `${e.clientX - hoverBtn.current.offsetWidth / 2}px`;
-    } 
-  })
+  const cardHoverMove = (e) => {
+    if(circleIsOn && hoverBtn.current){
+      const { offsetX, offsetY } = e.nativeEvent;
+      hoverBtn.current.style.top = `${offsetY - hoverBtn.current.offsetHeight / 2}px`;
+      hoverBtn.current.style.left = `${offsetX - hoverBtn.current.offsetWidth / 2}px`;
+    }
+  }
 
   const cardHoverHide = () => {
     hoverBtn.current.style.display ='none'
@@ -27,7 +27,7 @@ const Card = ({ message, title, image, link}) => {
 
   return (
     <div className="project-card w-[579px] pb-8 ">
-      <div onMouseEnter={cardHover} onMouseLeave={cardHoverHide} onMouseDown={cardClick} className="card-display w-full h-[402px] rounded-[25px] overflow-hidden">
+      <div onMouseEnter={cardHover} onMouseLeave={cardHoverHide} onMouseDown={cardClick} onMouseMove={cardHoverMove} className="card-display w-full h-[402px] rounded-[25px] overflow-hidden relative">
         <div ref={hoverBtn} className="view-project pointer-events-none hidden absolute rounded-full justify-center items-center size-18 bg-white opacity-85 backdrop-blur-lg text-center">
           <h6 className="text-[14px] ">Open Project</h6>
         </div>

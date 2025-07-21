@@ -63,7 +63,7 @@ const Hero = () => {
   );
 
   return (
-    <header>
+    <header className="">
       <div className="container ">
         <Nav />
         <div ref={containerHero} className="hero-section">
@@ -138,7 +138,7 @@ const Hero = () => {
               />
             </div>
           </div>
-        <div className="line h-[1.5px] bg-black mt-10"></div>
+        <div className="line h-[1.5px] bg-white mt-10"></div>
         </div>
       </div>
     </header>
