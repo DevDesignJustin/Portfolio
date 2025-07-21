@@ -48,10 +48,12 @@ const Nav = () => {
               <img src="/images/icons/home.svg" alt="" />
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="">
+          <li className="about-btn nav-item">
+            {/* <a className="nav-link" href=""> */}
+            <div className="nav-link">
               About
-            </a>
+            </div>
+            {/* </a> */}
           </li>
           <li className="nav-item">
             <a className="nav-link" href="">

@@ -7,13 +7,19 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 import TechStack from "./sections/TechStack";
+import About from "./sections/About";
 
 function App() {
   useGSAP(() => {
    let smoother = ScrollSmoother.create({
       smooth: 2,
       effects: true,
+      normalizeScroll: true,
     });
+
+    // document.querySelector('.about-btn').addEventListener('click', () => {
+    //   smoother.scrollTo('#about', true);
+    // });
 
     
   });
@@ -23,6 +29,7 @@ function App() {
         <Hero />
         <Projects />
         <TechStack />
+        <About />
       </div>
     </div>
   );

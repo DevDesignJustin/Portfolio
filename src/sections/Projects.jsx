@@ -22,7 +22,7 @@ const Projects = () => {
                 Here are some of my biggest designs and websites I’ve created.
               </p>
             </div>
-            <div className="row-span- bg-amber-50">
+            <div className="">
               <Card
                 message="React • Tailwind CSS • GSAP"
                 title="GTA VI Landing Page Clone"

@@ -13,6 +13,7 @@ body {
   background-color: var(--color-white);
   font-family: var(--font-primary);
   color: var(--color-dark);
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -62,5 +63,13 @@ body {
 
   .subtitle {
     @apply text-[40px] font-bold;
+  }
+
+  .about-topic {
+    @apply text-[20px] font-bold;
+  }
+
+  .about-text {
+    @apply text-[16px];
   }
 }
