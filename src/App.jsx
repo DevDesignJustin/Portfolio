@@ -8,6 +8,7 @@ import Hero from "./sections/Hero";
 import Projects from "./sections/Projects";
 import TechStack from "./sections/TechStack";
 import About from "./sections/About";
+import Contact from "./sections/Contact";
 
 function App() {
   useGSAP(() => {
@@ -28,8 +29,9 @@ function App() {
       <div id="smooth-content">
         <Hero />
         <Projects />
-        <TechStack />
         <About />
+        <TechStack />
+        <Contact />
       </div>
     </div>
   );

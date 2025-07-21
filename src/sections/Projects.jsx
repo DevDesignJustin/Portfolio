@@ -42,6 +42,7 @@ const Projects = () => {
             </div>
           </div>
         </div>
+        <div className="line h-[1.5px] bg-black mt-10"></div>
       </div>
     </section>
   );
