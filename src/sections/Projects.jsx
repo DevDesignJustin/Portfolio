@@ -1,31 +1,33 @@
 import React from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollSmoother } from "gsap/all";
-import { ScrollTrigger } from "gsap/all";
 import Card from "../components/Card";
+import { useRef } from "react";
+
 const Projects = () => {
-  const projectArr = gsap.utils.toArray(".card");
+  const projectsRef = useRef(null);
   useGSAP(() => {
+    const projectArr = gsap.utils.toArray(".card");
     projectArr.forEach((card) => {
-      const tlP = gsap.timeline({
+      gsap.from(card, {
         scrollTrigger: {
           trigger: card,
           start: "top bottom",
-          // scrub: 3,
         },
-      });
-      tlP.to(card, {
         opacity: 0,
         y: 100,
         duration: 1,
-        ease: "power1.inOut",
+        ease: "power1.out",
       });
     });
   });
   return (
-    <section className="projects py-[120px] bg-white ">
-      <div className="container  " id="smooth-wrapper">
+    <section
+      className="projects py-[120px] bg-white"
+      id="projects"
+      ref={projectsRef}
+    >
+      <div className="container" id="smooth-wrapper">
         <div
           className="projects-grid grid md:grid-cols-2 grid-cols-1 justify-between"
           id="smooth-content"
@@ -42,7 +44,7 @@ const Projects = () => {
                 message="React • Tailwind CSS • GSAP"
                 title="GTA VI Landing Page Clone"
                 image="GTA-VI"
-                link=""
+                link="https://gtavi.kjustin.me"
               />
             </div>
           </div>
@@ -52,12 +54,11 @@ const Projects = () => {
                 message="UI & UX • Figma"
                 title="Amazon Redesign: Habitual"
                 image="habitual"
-                link=""
+                link="https://www.figma.com/community/file/1237947468175384783/amazon-redesign-devdesignjustin"
               />
             </div>
           </div>
         </div>
-        {/* <div className="line h-[1.5px] bg-black mt-10"></div> */}
       </div>
     </section>
   );

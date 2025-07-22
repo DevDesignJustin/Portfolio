@@ -83,10 +83,10 @@ const Hero = () => {
                     designing web applications from an early age.
                   </p>
                   <button className="button bg-primary border-[3px] border-primary text-white mt-10 mb-2.5 hover:bg-white hover:text-primary">
-                    <a href="">My Projects</a>
+                    <a href="#projects">My Projects</a>
                   </button>
                   <button className="button border-[3px] border-black text-black hover:bg-black hover:text-white">
-                    <a href="https://github.com/DevDesignJustin">My Github</a>
+                    <a href="https://github.com/DevDesignJustin" target="_blank">My Github</a>
                   </button>
                 </div>
               </div>
@@ -119,7 +119,7 @@ const Hero = () => {
                     </div>
                   </div>
                   <button className="button border-[3px] border-primary text-primary w-[240px] mt-auto hover:bg-primary hover:text-white">
-                    <a href="">Check it out</a>
+                    <a href="https://www.figma.com/community/file/1237947468175384783/amazon-redesign-devdesignjustin" target="_blank">Check it out</a>
                   </button>
                 </div>
               </div>
