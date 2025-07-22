@@ -26,8 +26,8 @@ const Card = ({ message, title, image, link}) => {
   }
 
   return (
-    <div className="project-card w-[579px] pb-8 ">
-      <div onMouseEnter={cardHover} onMouseLeave={cardHoverHide} onMouseDown={cardClick} onMouseMove={cardHoverMove} className="card-display w-full h-[402px] rounded-[25px] overflow-hidden relative">
+    <div className="project-card w-[560px] pb-8 ">
+      <div onMouseEnter={cardHover} onMouseLeave={cardHoverHide} onMouseDown={cardClick} onMouseMove={cardHoverMove} className="card-display w-full rounded-[25px] overflow-hidden relative">
         <div ref={hoverBtn} className="view-project pointer-events-none hidden absolute rounded-full justify-center items-center size-18 bg-white opacity-85 backdrop-blur-lg text-center">
           <h6 className="text-[14px] ">Open Project</h6>
         </div>

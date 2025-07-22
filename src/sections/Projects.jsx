@@ -5,8 +5,23 @@ import { ScrollSmoother } from "gsap/all";
 import { ScrollTrigger } from "gsap/all";
 import Card from "../components/Card";
 const Projects = () => {
+  const projectArr = gsap.utils.toArray(".card");
   useGSAP(() => {
- 
+    projectArr.forEach((card) => {
+      const tlP = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom",
+          // scrub: 3,
+        },
+      });
+      tlP.to(card, {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+        ease: "power1.inOut",
+      });
+    });
   });
   return (
     <section className="projects py-[120px] bg-white ">
@@ -22,7 +37,7 @@ const Projects = () => {
                 Here are some of my biggest designs and websites I’ve created.
               </p>
             </div>
-            <div className="">
+            <div className="card">
               <Card
                 message="React • Tailwind CSS • GSAP"
                 title="GTA VI Landing Page Clone"
@@ -32,7 +47,7 @@ const Projects = () => {
             </div>
           </div>
           <div className="projects-right grid">
-            <div className="">
+            <div className="card">
               <Card
                 message="UI & UX • Figma"
                 title="Amazon Redesign: Habitual"
