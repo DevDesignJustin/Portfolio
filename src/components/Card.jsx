@@ -29,7 +29,7 @@ const Card = ({ message, title, image, link }) => {
   };
 
   return (
-    <div className="project-card w-full pb-8 ">
+    <div className="project-card w-full pb-10 ">
       <div
         onMouseEnter={cardHover}
         onMouseLeave={cardHoverHide}

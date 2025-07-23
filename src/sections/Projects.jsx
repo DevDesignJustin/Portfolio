@@ -33,7 +33,7 @@ const Projects = () => {
           id="smooth-content"
         >
           <div className="projects-left grid">
-            <div className="projects-intro pb-15 row">
+            <div className="projects-intro pb-1 h-[150px] ">
               <h2 className="subtitle">Projects</h2>
               <p className="text-[18px] w-[321px] text-height-[1px]">
                 Here are some of my biggest designs and websites I’ve created.
@@ -55,6 +55,14 @@ const Projects = () => {
                 title="Amazon Redesign: Habitual"
                 image="habitual"
                 link="https://www.figma.com/community/file/1237947468175384783/amazon-redesign-devdesignjustin"
+              />
+            </div>
+            <div className="card">
+              <Card
+                message="React • Tailwind CSS • GSAP"
+                title="Zentry Landing Page Clone"
+                image="zentry"
+                link="https://zentry.kjustin.me"
               />
             </div>
           </div>
