@@ -11,11 +11,11 @@ import Contact from "./sections/Contact";
 
 function App() {
   useGSAP(() => {
-    gsap.from('.mid', {
+    gsap.from(".mid", {
       opacity: 0,
       y: 300,
       duration: 1,
-      ease: 'power1.inOut',
+      ease: "power1.inOut",
     });
   });
   return (

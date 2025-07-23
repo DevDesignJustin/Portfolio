@@ -29,7 +29,7 @@ const Projects = () => {
     >
       <div className="container" id="smooth-wrapper">
         <div
-          className="projects-grid grid md:grid-cols-2 grid-cols-1 justify-between"
+          className="projects-grid grid gap-10 md:grid-cols-2 grid-cols-1 justify-between"
           id="smooth-content"
         >
           <div className="projects-left grid">
