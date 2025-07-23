@@ -7,6 +7,13 @@
   --color-dark: #000;
   --font-primary: "Afacad", sans-serif;
   --font-secondary: "Allison", sans-serif;
+  --breakpoint-xl: 1450px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-mg: 1060px;
+  --breakpoint-md: 900px;
+  --breakpoint-sd: 824px;
+  --breakpoint-xs: 650px;
+  --breakpoint-sm: 400px;
 }
 
 body {

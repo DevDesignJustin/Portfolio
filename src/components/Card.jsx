@@ -29,13 +29,13 @@ const Card = ({ message, title, image, link }) => {
   };
 
   return (
-    <div className="project-card w-[560px] pb-8 ">
+    <div className="project-card w-full pb-8 ">
       <div
         onMouseEnter={cardHover}
         onMouseLeave={cardHoverHide}
         onMouseDown={cardClick}
         onMouseMove={cardHoverMove}
-        className="card-display w-full rounded-[25px] overflow-hidden relative"
+        className="card-display w-full rounded-[15px] md:rounded-[25px] overflow-hidden relative"
       >
         <div
           ref={hoverBtn}
@@ -45,8 +45,8 @@ const Card = ({ message, title, image, link }) => {
         </div>
         <img src={`images/projects/${image}.png`} alt="" />
       </div>
-      <h6 className="text-2xl font-bold mt-[55px]">{title}</h6>
-      <p className="text-[16px] mt-2">{message}</p>
+      <h6 className="sm:text-2xl text-[18px] font-bold md:mt-[55px] mt-[20px]">{title}</h6>
+      <p className="sm:text-[16px] text-[15px] sm:mt-2 mt-0">{message}</p>
     </div>
   );
 };
