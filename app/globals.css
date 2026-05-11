@@ -23,6 +23,12 @@ body {
   cursor: none !important;
 }
 
+@media (pointer: coarse) {
+  html, body, * {
+    cursor: auto !important;
+  }
+}
+
 @keyframes marquee-left {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

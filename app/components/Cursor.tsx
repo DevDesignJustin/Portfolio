@@ -8,6 +8,7 @@ export default function Cursor() {
   const labelRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const dot = dotRef.current;
     const ring = ringRef.current;
     const label = labelRef.current;
