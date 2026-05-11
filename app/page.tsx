@@ -67,6 +67,7 @@ export default function Portfolio() {
   } | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const skillsGridRef = useRef<HTMLDivElement>(null);
 
   // ── Derived ───────────────────────────────────────────────────────────────
@@ -184,6 +185,10 @@ export default function Portfolio() {
   };
 
   // ── Effects ───────────────────────────────────────────────────────────────
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
   useEffect(() => {
     if (sessionStorage.getItem("jk_v5")) {
       setShowLoader(false);
@@ -788,8 +793,8 @@ export default function Portfolio() {
                   key={p.num}
                   className="proj-row relative"
                   style={{ borderTop: `1px solid ${border}` }}
-                  onMouseEnter={() => setHoveredProject(i)}
-                  onMouseLeave={() => setHoveredProject(null)}
+                  onMouseEnter={!isTouch ? () => setHoveredProject(i) : undefined}
+                  onMouseLeave={!isTouch ? () => setHoveredProject(null) : undefined}
                   onClick={() => setHoveredProject(hoveredProject === i ? null : i)}
                 >
                   <span
