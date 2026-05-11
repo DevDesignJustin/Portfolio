@@ -935,11 +935,8 @@ export default function Portfolio() {
               return (
                 <div
                   key={p.title}
-                  className={`mini-card relative flex flex-col justify-between overflow-hidden ${featured ? "sm:col-span-2 md:col-span-2" : ""} ${featured ? "min-h-[260px] md:min-h-[340px]" : "min-h-[200px] md:min-h-[220px]"}`}
-                  style={{
-                    padding: "2rem",
-                    background: bg,
-                  }}
+                  className={`mini-card relative flex flex-col overflow-hidden ${featured ? "sm:col-span-2 md:col-span-2" : ""} ${featured ? "min-h-[260px] md:min-h-[340px]" : "min-h-[200px] md:min-h-[220px]"}`}
+                  style={{ background: bg }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = `${accent}08`;
@@ -953,80 +950,74 @@ export default function Portfolio() {
                     (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${txt}06`);
                   }}
                 >
-                  {/* Full-cover link for the project — sits below content */}
-                  <a
+                  {/* Project link wraps all content except GitHub */}
+                  <Link
                     href={p.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute inset-0 z-0"
-                    aria-label={`Visit ${p.title}`}
-                  />
-                  <span
-                    className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
-                    style={{
-                      fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
-                      color: `${txt}06`,
-                      lineHeight: 0.85,
-                    }}
+                    className="flex flex-col flex-1 p-8"
                   >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="flex items-start justify-between gap-4 relative z-10 pointer-events-none">
                     <span
-                      className="font-mono text-[9px] tracking-[0.2em] uppercase"
-                      style={{ color: accent }}
-                    >
-                      {p.tag}
-                    </span>
-                    <span
-                      className="font-mono text-[9px] shrink-0"
-                      style={{ color: muted }}
-                    >
-                      {p.year}
-                    </span>
-                  </div>
-                  <div className="relative z-10 mt-auto">
-                    <h3
-                      className={`font-black leading-tight mb-3 pointer-events-none ${featured ? "text-3xl" : "text-xl"}`}
-                      style={{ color: txt, letterSpacing: "-0.02em" }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p
-                      className="text-sm leading-relaxed mb-4 pointer-events-none"
+                      className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
                       style={{
-                        color: muted,
-                        maxWidth: featured ? "520px" : "none",
+                        fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
+                        color: `${txt}06`,
+                        lineHeight: 0.85,
                       }}
                     >
-                      {p.desc}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mb-4 pointer-events-none">
-                      {p.stack.map((t) => (
-                        <span
-                          key={t}
-                          className="font-mono text-[9px] px-2 py-0.5"
-                          style={{ border: `1px solid ${border}`, color: subtle }}
-                        >
-                          {t}
-                        </span>
-                      ))}
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="font-mono text-[9px] tracking-[0.2em] uppercase" style={{ color: accent }}>
+                        {p.tag}
+                      </span>
+                      <span className="font-mono text-[9px] shrink-0" style={{ color: muted }}>
+                        {p.year}
+                      </span>
                     </div>
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative z-20 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors"
-                      style={{ color: muted }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
-                    >
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                      </svg>
-                      GitHub ↗
-                    </a>
-                  </div>
+                    <div className="mt-auto pt-6">
+                      <h3
+                        className={`font-black leading-tight mb-3 ${featured ? "text-3xl" : "text-xl"}`}
+                        style={{ color: txt, letterSpacing: "-0.02em" }}
+                      >
+                        {p.title}
+                      </h3>
+                      <p
+                        className="text-sm leading-relaxed mb-4"
+                        style={{ color: muted, maxWidth: featured ? "520px" : "none" }}
+                      >
+                        {p.desc}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {p.stack.map((t) => (
+                          <span
+                            key={t}
+                            className="font-mono text-[9px] px-2 py-0.5"
+                            style={{ border: `1px solid ${border}`, color: subtle }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Link>
+
+                  {/* GitHub — separate link, never nested */}
+                  <Link
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pb-8"
+                    style={{ color: muted }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
+                  >
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                    </svg>
+                    GitHub ↗
+                  </Link>
+
                   <span
                     className="mini-bar absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
                     style={{
