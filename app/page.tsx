@@ -933,11 +933,8 @@ export default function Portfolio() {
             {miniProjects.map((p, i) => {
               const featured = i === 0;
               return (
-                <Link
+                <div
                   key={p.title}
-                  href={p.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className={`mini-card relative flex flex-col justify-between overflow-hidden ${featured ? "sm:col-span-2 md:col-span-2" : ""} ${featured ? "min-h-[260px] md:min-h-[340px]" : "min-h-[200px] md:min-h-[220px]"}`}
                   style={{
                     padding: "2rem",
@@ -946,37 +943,35 @@ export default function Portfolio() {
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = `${accent}08`;
-                    (
-                      el.querySelector(".mini-bar") as HTMLElement | null
-                    )?.style.setProperty("transform", "scaleX(1)");
-                    (
-                      el.querySelector(".mini-num") as HTMLElement | null
-                    )?.style.setProperty("color", `${accent}22`);
+                    (el.querySelector(".mini-bar") as HTMLElement | null)?.style.setProperty("transform", "scaleX(1)");
+                    (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${accent}22`);
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = bg;
-                    (
-                      el.querySelector(".mini-bar") as HTMLElement | null
-                    )?.style.setProperty("transform", "scaleX(0)");
-                    (
-                      el.querySelector(".mini-num") as HTMLElement | null
-                    )?.style.setProperty("color", `${txt}06`);
+                    (el.querySelector(".mini-bar") as HTMLElement | null)?.style.setProperty("transform", "scaleX(0)");
+                    (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${txt}06`);
                   }}
                 >
+                  {/* Full-cover link for the project — sits below content */}
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 z-0"
+                    aria-label={`Visit ${p.title}`}
+                  />
                   <span
                     className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
                     style={{
-                      fontSize: featured
-                        ? "clamp(6rem,14vw,11rem)"
-                        : "clamp(4rem,8vw,7rem)",
+                      fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
                       color: `${txt}06`,
                       lineHeight: 0.85,
                     }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div className="flex items-start justify-between gap-4 relative z-10">
+                  <div className="flex items-start justify-between gap-4 relative z-10 pointer-events-none">
                     <span
                       className="font-mono text-[9px] tracking-[0.2em] uppercase"
                       style={{ color: accent }}
@@ -992,13 +987,13 @@ export default function Portfolio() {
                   </div>
                   <div className="relative z-10 mt-auto">
                     <h3
-                      className={`font-black leading-tight mb-3 ${featured ? "text-3xl" : "text-xl"}`}
+                      className={`font-black leading-tight mb-3 pointer-events-none ${featured ? "text-3xl" : "text-xl"}`}
                       style={{ color: txt, letterSpacing: "-0.02em" }}
                     >
                       {p.title}
                     </h3>
                     <p
-                      className="text-sm leading-relaxed mb-4"
+                      className="text-sm leading-relaxed mb-4 pointer-events-none"
                       style={{
                         color: muted,
                         maxWidth: featured ? "520px" : "none",
@@ -1006,7 +1001,7 @@ export default function Portfolio() {
                     >
                       {p.desc}
                     </p>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    <div className="flex flex-wrap gap-1.5 mb-4 pointer-events-none">
                       {p.stack.map((t) => (
                         <span
                           key={t}
@@ -1021,8 +1016,7 @@ export default function Portfolio() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors"
+                      className="relative z-20 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors"
                       style={{ color: muted }}
                       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
                       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
@@ -1034,14 +1028,14 @@ export default function Portfolio() {
                     </a>
                   </div>
                   <span
-                    className="mini-bar absolute bottom-0 left-0 h-[2px] w-full origin-left"
+                    className="mini-bar absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
                     style={{
                       background: accent,
                       transform: "scaleX(0)",
                       transition: "transform 0.4s cubic-bezier(.16,1,.3,1)",
                     }}
                   />
-                </Link>
+                </div>
               );
             })}
           </div>
