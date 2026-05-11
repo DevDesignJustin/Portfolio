@@ -5,7 +5,7 @@ import Cursor from "./components/Cursor";
 import "./globals.css";
 
 const cabinet = localFont({
-  src: "../public/CabinetGrotesk_Complete/Fonts/WEB/fonts/CabinetGrotesk-Variable.woff2",
+  src: "../public/fonts/CabinetGrotesk-Variable.woff2",
   variable: "--font-sans",
   weight: "100 900",
   display: "swap",
