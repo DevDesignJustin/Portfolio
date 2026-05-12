@@ -200,6 +200,7 @@ export default function Portfolio() {
     const orig = document.title;
     const h = () => {
       document.title = document.hidden ? "psst, come back 👀" : orig;
+      if (!document.hidden) ScrollTrigger.refresh();
     };
     document.addEventListener("visibilitychange", h);
     return () => {
@@ -278,7 +279,7 @@ export default function Portfolio() {
           transformOrigin: "left",
           duration: 1.1,
           ease: "power3.inOut",
-          scrollTrigger: { trigger: el, start: "top 88%" },
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
       gsap.utils.toArray<Element>(".reveal").forEach((el) => {
@@ -287,7 +288,7 @@ export default function Portfolio() {
           opacity: 0,
           duration: 0.85,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 91%" },
+          scrollTrigger: { trigger: el, start: "top 91%", once: true },
         });
       });
       gsap.utils.toArray<Element>(".proj-row").forEach((el, i) => {
@@ -296,7 +297,7 @@ export default function Portfolio() {
           y: 24,
           duration: 0.75,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 92%" },
+          scrollTrigger: { trigger: el, start: "top 95%", once: true },
           delay: i * 0.05,
         });
       });
@@ -306,7 +307,7 @@ export default function Portfolio() {
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 88%" },
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
       gsap.from(".contact-word", {
@@ -314,7 +315,7 @@ export default function Portfolio() {
         duration: 1.2,
         stagger: 0.12,
         ease: "power4.out",
-        scrollTrigger: { trigger: "#contact", start: "top 70%" },
+        scrollTrigger: { trigger: "#contact", start: "top 70%", once: true },
       });
     },
     { scope: containerRef },
@@ -792,7 +793,7 @@ export default function Portfolio() {
                 <div
                   key={p.num}
                   className="proj-row relative"
-                  style={{ borderTop: `1px solid ${border}` }}
+                  style={{ borderTop: `1px solid ${border}`, cursor: "pointer", touchAction: "manipulation" }}
                   onMouseEnter={!isTouch ? () => setHoveredProject(i) : undefined}
                   onMouseLeave={!isTouch ? () => setHoveredProject(null) : undefined}
                   onClick={() => setHoveredProject(hoveredProject === i ? null : i)}
@@ -1007,13 +1008,14 @@ export default function Portfolio() {
                     </div>
                   </Link>
 
-                  {/* GitHub — separate link, never nested */}
-                  <Link
+                  {/* GitHub — native <a> for reliable mobile external navigation */}
+                  <a
                     href={p.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pb-8"
-                    style={{ color: muted }}
+                    className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pt-2 pb-8"
+                    style={{ color: muted, touchAction: "manipulation" }}
+                    onClick={(e) => e.stopPropagation()}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
                   >
@@ -1021,7 +1023,7 @@ export default function Portfolio() {
                       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
                     </svg>
                     GitHub ↗
-                  </Link>
+                  </a>
 
                   <span
                     className="mini-bar absolute bottom-0 left-0 h-[2px] w-full origin-left pointer-events-none"
