@@ -20,7 +20,6 @@ import {
 } from "@/app/data";
 import ContextMenu from "@/app/components/ContextMenu";
 import Counter from "@/app/components/Counter";
-import CursorTrail from "@/app/components/CursorTrail";
 import GitHubStats from "@/app/components/GitHubStats";
 import Loader from "@/app/components/Loader";
 import MagneticButton from "@/app/components/MagneticButton";
@@ -41,7 +40,6 @@ export default function Portfolio() {
   const heroGridRef = useRef<HTMLDivElement>(null);
   const themeOverlayRef = useRef<HTMLDivElement>(null);
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
-  const trailId = useRef(0);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── State ─────────────────────────────────────────────────────────────────
@@ -54,9 +52,6 @@ export default function Portfolio() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [activeExp, setActiveExp] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
-  const [trail, setTrail] = useState<
-    { id: number; x: number; y: number; age: number }[]
-  >([]);
   const [toast, setToast] = useState<{ msg: string; visible: boolean }>({
     msg: "",
     visible: false,
@@ -209,18 +204,6 @@ export default function Portfolio() {
     };
   }, []);
 
-  useEffect(() => {
-    const h = (e: MouseEvent) => {
-      const id = trailId.current++;
-      setTrail((t) => [
-        ...t.slice(-18),
-        { id, x: e.clientX, y: e.clientY, age: Date.now() },
-      ]);
-      setTimeout(() => setTrail((t) => t.filter((p) => p.id !== id)), 350);
-    };
-    window.addEventListener("mousemove", h);
-    return () => window.removeEventListener("mousemove", h);
-  }, []);
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
@@ -383,7 +366,6 @@ export default function Portfolio() {
     >
       {/* Overlays */}
       {showLoader && <Loader accent={accent} onDone={onLoaderDone} />}
-      <CursorTrail items={trail} accent={accent} />
       <Toast message={toast.msg} visible={toast.visible} accent={accent} />
       {contextMenu && (
         <ContextMenu
