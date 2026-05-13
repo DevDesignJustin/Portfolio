@@ -312,7 +312,7 @@ export default function Portfolio() {
         duration: 1.2,
         stagger: 0.12,
         ease: "power4.out",
-        clearProps: "all",
+        clearProps: "transform",
         scrollTrigger: { trigger: "#contact", start: "top 70%", once: true },
       });
     },
