@@ -54,10 +54,10 @@ export default function TerminalWidget({ accent, colors }: Props) {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-300 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 right-6 z-300 flex flex-col items-end gap-3" style={{ pointerEvents: "none" }}>
       {/* Panel */}
       <div ref={panelRef} className="rounded-2xl overflow-hidden border opacity-0"
-        style={{ width: 380, background: bg, borderColor: border, pointerEvents: "none" }}
+        style={{ width: 380, background: bg, borderColor: border, pointerEvents: "none", maxWidth: "calc(100vw - 48px)" }}
         onClick={() => inputRef.current?.focus()}>
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ borderColor: border, background: surface }}>
@@ -92,7 +92,7 @@ export default function TerminalWidget({ accent, colors }: Props) {
       {/* Toggle */}
       <button onClick={() => setOpen(v => !v)}
         className="flex items-center gap-2.5 pl-3.5 pr-4 py-2.5 rounded-full border font-mono text-[11px] tracking-widest uppercase transition-all"
-        style={{ background: open ? accent : surface, borderColor: open ? accent : border, color: open ? bg : muted }}
+        style={{ background: open ? accent : surface, borderColor: open ? accent : border, color: open ? bg : muted, pointerEvents: "auto" }}
         onMouseEnter={e => { if (!open) { const el = e.currentTarget as HTMLElement; el.style.borderColor = accent; el.style.color = accent; } }}
         onMouseLeave={e => { if (!open) { const el = e.currentTarget as HTMLElement; el.style.borderColor = border; el.style.color = muted; } }}>
         <span className="font-mono text-base leading-none" style={{ letterSpacing: 0 }}>{open ? "×" : ">_"}</span>
