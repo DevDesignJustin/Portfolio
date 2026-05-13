@@ -79,29 +79,32 @@ export default function Portfolio() {
     );
   }, []);
 
-  const toggleTheme = useCallback((srcEl?: HTMLButtonElement) => {
-    const btn = srcEl ?? toggleBtnRef.current,
-      overlay = themeOverlayRef.current;
-    if (!btn || !overlay) return;
-    const rect = btn.getBoundingClientRect();
-    const x = rect.left + rect.width / 2,
-      y = rect.top + rect.height / 2;
-    const newDark = !isDark;
-    gsap.set(overlay, {
-      background: THEMES[newDark ? "dark" : "light"].bg,
-      display: "block",
-      clipPath: `circle(0% at ${x}px ${y}px)`,
-    });
-    gsap.to(overlay, {
-      clipPath: `circle(170% at ${x}px ${y}px)`,
-      duration: 0.85,
-      ease: "power4.inOut",
-      onComplete() {
-        setIsDark(newDark);
-        gsap.set(overlay, { display: "none" });
-      },
-    });
-  }, [isDark]);
+  const toggleTheme = useCallback(
+    (srcEl?: HTMLButtonElement) => {
+      const btn = srcEl ?? toggleBtnRef.current,
+        overlay = themeOverlayRef.current;
+      if (!btn || !overlay) return;
+      const rect = btn.getBoundingClientRect();
+      const x = rect.left + rect.width / 2,
+        y = rect.top + rect.height / 2;
+      const newDark = !isDark;
+      gsap.set(overlay, {
+        background: THEMES[newDark ? "dark" : "light"].bg,
+        display: "block",
+        clipPath: `circle(0% at ${x}px ${y}px)`,
+      });
+      gsap.to(overlay, {
+        clipPath: `circle(170% at ${x}px ${y}px)`,
+        duration: 0.85,
+        ease: "power4.inOut",
+        onComplete() {
+          setIsDark(newDark);
+          gsap.set(overlay, { display: "none" });
+        },
+      });
+    },
+    [isDark],
+  );
 
   const onLoaderDone = useCallback(() => {
     setShowLoader(false);
@@ -140,13 +143,21 @@ export default function Portfolio() {
     });
   }, []);
 
-  const smoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id?: string) => {
-    e.preventDefault();
-    const target = id ?? (e.currentTarget.getAttribute("href") ?? "").replace("#", "");
-    const el = document.getElementById(target);
-    if (!el) return;
-    gsap.to(window, { scrollTo: { y: el, offsetY: 56 }, duration: 1.1, ease: "power3.inOut" });
-  }, []);
+  const smoothScroll = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, id?: string) => {
+      e.preventDefault();
+      const target =
+        id ?? (e.currentTarget.getAttribute("href") ?? "").replace("#", "");
+      const el = document.getElementById(target);
+      if (!el) return;
+      gsap.to(window, {
+        scrollTo: { y: el, offsetY: 56 },
+        duration: 1.1,
+        ease: "power3.inOut",
+      });
+    },
+    [],
+  );
 
   const copyEmail = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -203,7 +214,6 @@ export default function Portfolio() {
       document.title = orig;
     };
   }, []);
-
 
   useEffect(() => {
     const h = (e: MouseEvent) => {
@@ -407,7 +417,6 @@ export default function Portfolio() {
         style={{ background: accent }}
       />
 
-
       {/* ── Nav ──────────────────────────────────────────────────────────────── */}
       <header
         className="fixed top-0 inset-x-0 z-50"
@@ -421,8 +430,12 @@ export default function Portfolio() {
           <button
             className="font-mono text-[10px] tracking-[0.25em] uppercase select-none transition-colors"
             style={{ color: muted }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.color = txt;
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.color = muted;
+            }}
           >
             JK
           </button>
@@ -438,7 +451,10 @@ export default function Portfolio() {
                 style={{ color: activeSection === s ? txt : muted }}
               >
                 {activeSection === s && (
-                  <span className="w-1 h-1 rounded-full shrink-0" style={{ background: accent }} />
+                  <span
+                    className="w-1 h-1 rounded-full shrink-0"
+                    style={{ background: accent }}
+                  />
                 )}
                 {s}
               </Link>
@@ -448,7 +464,9 @@ export default function Portfolio() {
           {/* Desktop right controls */}
           <div className="hidden md:flex items-center gap-3">
             <button
-              onClick={() => setAccentIdx(i => (i + 1) % ACCENT_COLORS.length)}
+              onClick={() =>
+                setAccentIdx((i) => (i + 1) % ACCENT_COLORS.length)
+              }
               aria-label="Cycle accent color"
               className="w-4 h-4 rounded-full transition-transform hover:scale-125"
               style={{ background: accent, boxShadow: `0 0 8px ${accent}88` }}
@@ -458,20 +476,41 @@ export default function Portfolio() {
           {/* Mobile right controls */}
           <div className="flex md:hidden items-center gap-3">
             <button
-              onClick={() => setAccentIdx(i => (i + 1) % ACCENT_COLORS.length)}
+              onClick={() =>
+                setAccentIdx((i) => (i + 1) % ACCENT_COLORS.length)
+              }
               aria-label="Cycle accent color"
               className="w-4 h-4 rounded-full transition-transform"
               style={{ background: accent, boxShadow: `0 0 8px ${accent}88` }}
             />
             {/* Hamburger */}
             <button
-              onClick={() => setMobileMenuOpen(v => !v)}
+              onClick={() => setMobileMenuOpen((v) => !v)}
               className="flex flex-col justify-center items-center gap-[5px] w-8 h-8"
               aria-label="Toggle menu"
             >
-              <span className="block h-px w-5 transition-all duration-300" style={{ background: muted, transform: mobileMenuOpen ? "rotate(45deg) translate(4px, 4px)" : "none" }} />
-              <span className="block h-px w-5 transition-all duration-300" style={{ background: muted, opacity: mobileMenuOpen ? 0 : 1 }} />
-              <span className="block h-px w-5 transition-all duration-300" style={{ background: muted, transform: mobileMenuOpen ? "rotate(-45deg) translate(4px, -4px)" : "none" }} />
+              <span
+                className="block h-px w-5 transition-all duration-300"
+                style={{
+                  background: muted,
+                  transform: mobileMenuOpen
+                    ? "rotate(45deg) translate(4px, 4px)"
+                    : "none",
+                }}
+              />
+              <span
+                className="block h-px w-5 transition-all duration-300"
+                style={{ background: muted, opacity: mobileMenuOpen ? 0 : 1 }}
+              />
+              <span
+                className="block h-px w-5 transition-all duration-300"
+                style={{
+                  background: muted,
+                  transform: mobileMenuOpen
+                    ? "rotate(-45deg) translate(4px, -4px)"
+                    : "none",
+                }}
+              />
             </button>
           </div>
         </div>
@@ -479,19 +518,33 @@ export default function Portfolio() {
         {/* Mobile menu dropdown */}
         <div
           className="md:hidden overflow-hidden transition-all duration-400"
-          style={{ maxHeight: mobileMenuOpen ? 400 : 0, borderTop: mobileMenuOpen ? `1px solid ${border}` : "none" }}
+          style={{
+            maxHeight: mobileMenuOpen ? 400 : 0,
+            borderTop: mobileMenuOpen ? `1px solid ${border}` : "none",
+          }}
         >
           <nav className="px-5 py-6 flex flex-col gap-0">
             {NAV.map((s) => (
               <Link
                 key={s}
                 href={`#${s}`}
-                onClick={(e) => { smoothScroll(e); setMobileMenuOpen(false); }}
+                onClick={(e) => {
+                  smoothScroll(e);
+                  setMobileMenuOpen(false);
+                }}
                 className="flex items-center justify-between py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
-                style={{ color: activeSection === s ? txt : muted, borderBottom: `1px solid ${border}` }}
+                style={{
+                  color: activeSection === s ? txt : muted,
+                  borderBottom: `1px solid ${border}`,
+                }}
               >
                 {s}
-                {activeSection === s && <span className="w-1.5 h-1.5 rounded-full" style={{ background: accent }} />}
+                {activeSection === s && (
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ background: accent }}
+                  />
+                )}
               </Link>
             ))}
           </nav>
@@ -734,7 +787,7 @@ export default function Portfolio() {
                 ["Focus", "Full-Stack & AI"],
                 ["Location", "New Jersey, USA"],
                 ["Experience", "5+ years"],
-                ["Education", "B.S. Computer Science"],
+                ["Education", "Currently in High School"],
                 ["Status", "Available"],
               ].map(([l, v]) => (
                 <div
@@ -780,10 +833,20 @@ export default function Portfolio() {
                 <div
                   key={p.num}
                   className="proj-row relative"
-                  style={{ borderTop: `1px solid ${border}`, cursor: "pointer", touchAction: "manipulation" }}
-                  onMouseEnter={!isTouch ? () => setHoveredProject(i) : undefined}
-                  onMouseLeave={!isTouch ? () => setHoveredProject(null) : undefined}
-                  onClick={() => setHoveredProject(hoveredProject === i ? null : i)}
+                  style={{
+                    borderTop: `1px solid ${border}`,
+                    cursor: "pointer",
+                    touchAction: "manipulation",
+                  }}
+                  onMouseEnter={
+                    !isTouch ? () => setHoveredProject(i) : undefined
+                  }
+                  onMouseLeave={
+                    !isTouch ? () => setHoveredProject(null) : undefined
+                  }
+                  onClick={() =>
+                    setHoveredProject(hoveredProject === i ? null : i)
+                  }
                 >
                   <span
                     className="absolute right-0 top-1/2 font-black pointer-events-none select-none transition-all duration-500"
@@ -933,21 +996,31 @@ export default function Portfolio() {
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = `${accent}08`;
-                    (el.querySelector(".mini-bar") as HTMLElement | null)?.style.setProperty("transform", "scaleX(1)");
-                    (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${accent}22`);
+                    (
+                      el.querySelector(".mini-bar") as HTMLElement | null
+                    )?.style.setProperty("transform", "scaleX(1)");
+                    (
+                      el.querySelector(".mini-num") as HTMLElement | null
+                    )?.style.setProperty("color", `${accent}22`);
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = bg;
-                    (el.querySelector(".mini-bar") as HTMLElement | null)?.style.setProperty("transform", "scaleX(0)");
-                    (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${txt}06`);
+                    (
+                      el.querySelector(".mini-bar") as HTMLElement | null
+                    )?.style.setProperty("transform", "scaleX(0)");
+                    (
+                      el.querySelector(".mini-num") as HTMLElement | null
+                    )?.style.setProperty("color", `${txt}06`);
                   }}
                 >
                   {/* Decorative number — direct child so it never sits inside a link */}
                   <span
                     className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
                     style={{
-                      fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
+                      fontSize: featured
+                        ? "clamp(6rem,14vw,11rem)"
+                        : "clamp(4rem,8vw,7rem)",
                       color: `${txt}06`,
                       lineHeight: 0.85,
                     }}
@@ -963,10 +1036,16 @@ export default function Portfolio() {
                     className="flex flex-col flex-1 p-8"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <span className="font-mono text-[9px] tracking-[0.2em] uppercase" style={{ color: accent }}>
+                      <span
+                        className="font-mono text-[9px] tracking-[0.2em] uppercase"
+                        style={{ color: accent }}
+                      >
                         {p.tag}
                       </span>
-                      <span className="font-mono text-[9px] shrink-0" style={{ color: muted }}>
+                      <span
+                        className="font-mono text-[9px] shrink-0"
+                        style={{ color: muted }}
+                      >
                         {p.year}
                       </span>
                     </div>
@@ -979,7 +1058,10 @@ export default function Portfolio() {
                       </h3>
                       <p
                         className="text-sm leading-relaxed mb-4"
-                        style={{ color: muted, maxWidth: featured ? "520px" : "none" }}
+                        style={{
+                          color: muted,
+                          maxWidth: featured ? "520px" : "none",
+                        }}
                       >
                         {p.desc}
                       </p>
@@ -988,7 +1070,10 @@ export default function Portfolio() {
                           <span
                             key={t}
                             className="font-mono text-[9px] px-2 py-0.5"
-                            style={{ border: `1px solid ${border}`, color: subtle }}
+                            style={{
+                              border: `1px solid ${border}`,
+                              color: subtle,
+                            }}
                           >
                             {t}
                           </span>
@@ -1005,10 +1090,19 @@ export default function Portfolio() {
                     className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pt-3 pb-8"
                     style={{ color: muted, position: "relative", zIndex: 1 }}
                     onClick={(e) => e.stopPropagation()}
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = txt;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = muted;
+                    }}
                   >
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
                       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
                     </svg>
                     GitHub ↗
@@ -1273,9 +1367,7 @@ export default function Portfolio() {
                 {copied ? "Copied! ✓" : "devdesignjustin@gmail.com ↗"}
               </MagneticButton>
               <div className="flex items-center gap-6">
-                {[
-                  ["GitHub", "#"],
-                ].map(([n, h]) => (
+                {[["GitHub", "#"]].map(([n, h]) => (
                   <Link
                     key={n}
                     href={h}
