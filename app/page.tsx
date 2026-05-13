@@ -1367,7 +1367,7 @@ export default function Portfolio() {
                 {copied ? "Copied! ✓" : "devdesignjustin@gmail.com ↗"}
               </MagneticButton>
               <div className="flex items-center gap-6">
-                {[["GitHub", "#"]].map(([n, h]) => (
+                {[["GitHub", "https://github.com/DevDesignJustin"]].map(([n, h]) => (
                   <Link
                     key={n}
                     href={h}
