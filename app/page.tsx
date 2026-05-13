@@ -279,6 +279,7 @@ export default function Portfolio() {
           transformOrigin: "left",
           duration: 1.1,
           ease: "power3.inOut",
+          clearProps: "all",
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
@@ -288,6 +289,7 @@ export default function Portfolio() {
           opacity: 0,
           duration: 0.85,
           ease: "power3.out",
+          clearProps: "all",
           scrollTrigger: { trigger: el, start: "top 91%", once: true },
         });
       });
@@ -297,6 +299,7 @@ export default function Portfolio() {
           y: 24,
           duration: 0.75,
           ease: "power3.out",
+          clearProps: "all",
           scrollTrigger: { trigger: el, start: "top 95%", once: true },
           delay: i * 0.05,
         });
@@ -307,6 +310,7 @@ export default function Portfolio() {
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",
+          clearProps: "all",
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
@@ -315,6 +319,7 @@ export default function Portfolio() {
         duration: 1.2,
         stagger: 0.12,
         ease: "power4.out",
+        clearProps: "all",
         scrollTrigger: { trigger: "#contact", start: "top 70%", once: true },
       });
     },
@@ -942,7 +947,7 @@ export default function Portfolio() {
                 <div
                   key={p.title}
                   className={`mini-card relative flex flex-col overflow-hidden ${featured ? "sm:col-span-2 md:col-span-2" : ""} ${featured ? "min-h-[260px] md:min-h-[340px]" : "min-h-[200px] md:min-h-[220px]"}`}
-                  style={{ background: bg }}
+                  style={{ background: bg, touchAction: "manipulation" }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.background = `${accent}08`;
@@ -956,23 +961,25 @@ export default function Portfolio() {
                     (el.querySelector(".mini-num") as HTMLElement | null)?.style.setProperty("color", `${txt}06`);
                   }}
                 >
-                  {/* Project link wraps all content except GitHub */}
-                  <Link
+                  {/* Decorative number — direct child so it never sits inside a link */}
+                  <span
+                    className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
+                    style={{
+                      fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
+                      color: `${txt}06`,
+                      lineHeight: 0.85,
+                    }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Project link — native <a> for reliable mobile external navigation */}
+                  <a
                     href={p.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col flex-1 p-8"
                   >
-                    <span
-                      className="mini-num absolute bottom-0 right-4 font-black select-none pointer-events-none leading-none transition-colors duration-500"
-                      style={{
-                        fontSize: featured ? "clamp(6rem,14vw,11rem)" : "clamp(4rem,8vw,7rem)",
-                        color: `${txt}06`,
-                        lineHeight: 0.85,
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
                     <div className="flex items-start justify-between gap-4">
                       <span className="font-mono text-[9px] tracking-[0.2em] uppercase" style={{ color: accent }}>
                         {p.tag}
@@ -1006,15 +1013,15 @@ export default function Portfolio() {
                         ))}
                       </div>
                     </div>
-                  </Link>
+                  </a>
 
-                  {/* GitHub — native <a> for reliable mobile external navigation */}
+                  {/* GitHub — native <a>, full-width tap target */}
                   <a
                     href={p.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pt-2 pb-8"
-                    style={{ color: muted, touchAction: "manipulation" }}
+                    className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] uppercase transition-colors px-8 pt-3 pb-8"
+                    style={{ color: muted, position: "relative", zIndex: 1 }}
                     onClick={(e) => e.stopPropagation()}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = txt; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = muted; }}
